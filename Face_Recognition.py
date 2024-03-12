@@ -1,7 +1,7 @@
-from tkinter import*
+from tkinter import *
 from tkinter import ttk
 from sys import path
-from PIL import Image,ImageTk
+from PIL import Image, ImageTk
 from tkinter import messagebox
 import mysql.connector
 import os
@@ -9,9 +9,6 @@ import numpy as np
 import cv2
 from time import strftime
 from datetime import datetime
-
-
-
 
 
 class Face_Recogntion:
@@ -81,8 +78,6 @@ class Face_Recogntion:
                 id,predict=clf.predict(gray_image[y:y+h,x:x+w])
                 confidence=int((100*(1-predict/300)))
 
-              
-
                 my_cursor.execute("Select student_name from student where student_id="+str(id))
                 n=my_cursor.fetchone()
                 n="+".join(n)
@@ -98,8 +93,6 @@ class Face_Recogntion:
                 my_cursor.execute("Select Student_Id from student where student_id="+str(id))
                 i=my_cursor.fetchone()
                 i="+".join(i)
-
-                
 
                 if confidence>77:
                     
@@ -138,8 +131,6 @@ class Face_Recogntion:
                 break
         video_cap.release()
         cv2.destroyAllWindows()
-
-
 
 if __name__== "__main__":
     root=Tk()

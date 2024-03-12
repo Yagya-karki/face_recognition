@@ -1,6 +1,6 @@
-from tkinter import*
+from tkinter import *
 from tkinter import ttk
-from PIL import Image,ImageTk
+from PIL import Image, ImageTk
 from tkinter import messagebox
 import mysql.connector
 import os
@@ -10,7 +10,6 @@ from time import strftime
 from datetime import datetime
 import csv
 from tkinter import filedialog
-
 
 mydata=[]
 class Attendance:
@@ -37,10 +36,9 @@ class Attendance:
         img=Image.open(r"Image_detail/first.jpg")
         img=img.resize((800,200),Image.AFFINE)
         self.photoimg=ImageTk.PhotoImage(img)
-         
+        
         f_lbl=Label(self.root,image=self.photoimg)
         f_lbl.place(x=0,y=0,width=800,height=200)
-        
         
         img1=Image.open(r"Image_detail/middle.jpg")
         img1=img1.resize((800,200),Image.AFFINE)
@@ -52,7 +50,7 @@ class Attendance:
         main_frame=Frame(bd=2,bg="white")
         main_frame.place(x=10,y=235,width=1500,height=600)
 
-         #left label frame .............
+        #left label frame .............
         LEFT_frame=LabelFrame(main_frame,bd=2,bg="white",relief=RIDGE,text="Student Attendance Details",font=("times new roman",12,"bold"))
         LEFT_frame.place(x=10,y=10,width=707,height=580)
 
@@ -83,7 +81,6 @@ class Attendance:
         atten_roll.grid(row=0,column=3,padx=10,pady=5,sticky=W)
 
         #name 
-
         Name_label=Label(left_inside_frame,text="Name :",font=("times new roman",13,"bold"),bg="white")
         Name_label.grid(row=1,column=0,padx=10,pady=5,sticky=W)
         
@@ -91,7 +88,6 @@ class Attendance:
         atten_name.grid(row=1,column=1,padx=10,pady=5,sticky=W)
 
         #department
-
         Depart_label=Label(left_inside_frame,text="Department:",font=("times new roman",13,"bold"),bg="white")
         Depart_label.grid(row=1,column=2,padx=10,pady=5,sticky=W)
         
@@ -99,7 +95,6 @@ class Attendance:
         atten_dep.grid(row=1,column=3,padx=10,pady=5,sticky=W)
 
         #time 
-
         time_label=Label(left_inside_frame,text="Time:",font=("times new roman",13,"bold"),bg="white")
         time_label.grid(row=2,column=0,padx=10,pady=5,sticky=W)
         
@@ -107,7 +102,6 @@ class Attendance:
         atten_time.grid(row=2,column=1,padx=10,pady=5,sticky=W)
 
         #date
-
         Date_label=Label(left_inside_frame,text="Date:",font=("times new roman",13,"bold"),bg="white")
         Date_label.grid(row=2,column=2,padx=10,pady=5,sticky=W)
         
@@ -115,7 +109,6 @@ class Attendance:
         atten_date.grid(row=2,column=3,padx=10,pady=5,sticky=W)
 
         #attendance 
-
         attendancelabel=Label(left_inside_frame,text="Attendance Status:",font=("times new roman",13,"bold"),bg="white")
         attendancelabel.grid(row=3,column=0,padx=10,pady=5,sticky=W)
 
@@ -188,7 +181,6 @@ class Attendance:
             self.attendancecReportTable.insert("",END,values=i)
 
     # import csv
-
     def importCsv(self):
         global mydata
         mydata.clear()
@@ -199,7 +191,7 @@ class Attendance:
                 mydata.append(i)
             self.fetchdata(mydata)
             
-          #Export csv..
+        #Export csv..
     def ExportCSV(self):
         try:
             if len(mydata)<1:
@@ -214,8 +206,6 @@ class Attendance:
         except Exception as es:
             messagebox.showerror("Error",f"Due to :{str(es)}",parent=self.root)
 
-
-
     def get_cursor(self,event=""):
         cursor_row=self.attendancecReportTable.focus()
         content=self.attendancecReportTable.item(cursor_row)
@@ -228,7 +218,6 @@ class Attendance:
         self.var_attend_Date.set(rows[5])
         self.var_attend_Attendance.set(rows[6])
     
-        
     def resetdata(self):
         self.var_attend_Id.set()
         self.var_attend_Roll.set()
@@ -237,7 +226,6 @@ class Attendance:
         self.var_attend_Time.set()
         self.var_attend_Date.set()
         self.var_attend_Attendance.set()
-
 
 if __name__== "__main__":
     root=Tk()
